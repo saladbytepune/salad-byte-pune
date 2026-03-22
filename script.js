@@ -18,48 +18,54 @@ const SALADS = [
     name: 'Mix Sprout Paneer Salad',
     subtitle: 'Fresh Mint Fusion',
     emoji: '💪',
+    art: '🌱🥗🌿',
+    img: 'images/salad1.jpg',
     ingredients: 'Mixed sprouts, paneer, lettuce, purple cabbage, cucumber, cherry tomato, carrot, beetroot, zucchini, baby corn · Mint dressing',
-    img: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=75&auto=format&fit=crop',
   },
   {
     id: 2,
     name: 'Rajma Tofu Protein Bowl',
     subtitle: 'Asian Crunch',
     emoji: '🔥',
+    art: '🫘🥢🔥',
+    img: 'images/salad2.jpg',
     ingredients: 'Rajma, tofu, lettuce, cabbage, bell peppers, capsicum, zucchini · Peanut dressing',
-    img: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&q=75&auto=format&fit=crop',
   },
   {
     id: 3,
     name: 'Chatpata Chana Peanut Salad',
     subtitle: 'Desi Crunch',
     emoji: '🌶️',
+    art: '🌶️🥜🍋',
+    img: 'images/salad3.jpg',
     ingredients: 'Kala chana, peanuts, lettuce, cabbage, cherry tomato, cucumber, carrot, beetroot · Lemon masala',
-    img: 'https://images.unsplash.com/photo-1529059997568-3d847b1154f0?w=400&q=75&auto=format&fit=crop',
   },
   {
     id: 4,
     name: 'Soya Paneer Power Bowl',
     subtitle: 'Green Crunch',
     emoji: '⭐',
+    art: '🥦🧀⭐',
+    img: 'images/salad4.jpg',
     ingredients: 'Soya chunks, paneer, lettuce, purple cabbage, broccoli, zucchini · Honey mustard dressing',
-    img: 'https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?w=400&q=75&auto=format&fit=crop',
   },
   {
     id: 5,
     name: 'Exotic Veg Tofu Salad',
     subtitle: 'Premium Bowl',
     emoji: '🥦',
+    art: '🥦🫑🥕',
+    img: 'images/salad5.jpg',
     ingredients: 'Tofu, broccoli, zucchini, baby corn, bell peppers, carrot, beetroot, lettuce · Olive oil dressing',
-    img: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=75&auto=format&fit=crop',
   },
   {
     id: 6,
     name: 'Quinoa Chickpea Protein Bowl',
     subtitle: 'Fresh Balance',
     emoji: '🌾',
+    art: '🌾🫛🍅',
+    img: 'images/salad6.jpg',
     ingredients: 'Quinoa, chickpeas, lettuce, purple cabbage, cherry tomato, cucumber, zucchini · Lemon olive dressing',
-    img: 'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=400&q=75&auto=format&fit=crop',
   },
 ];
 
@@ -123,8 +129,11 @@ function renderMenu() {
     div.style.animationDelay = `${i * 0.06}s`;
     div.innerHTML = `
       <div class="card-img-col">
-        <img class="card-img" src="${s.img}" alt="${s.name}" loading="lazy"
-          onerror="this.style.background='#e4f2e4';this.style.display='flex';this.style.alignItems='center';this.style.justifyContent='center';this.outerHTML='<div class=&quot;card-img&quot; style=&quot;background:#e4f2e4;display:flex;align-items:center;justify-content:center;font-size:36px;height:100%&quot;>${s.emoji}</div>'" />
+        <div class="card-art card-art-${s.id}">
+          <img class="card-real-img" src="${s.img}" alt="${s.name}" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+          <div class="card-art-emojis" style="display:none">${s.art}</div>
+        </div>
         <div class="veg-dot"></div>
       </div>
       <div class="card-content">
@@ -199,8 +208,11 @@ function syncUI() {
       const el = document.createElement('div');
       el.className = 'cart-item';
       el.innerHTML = `
-        <img class="cart-item-thumb" src="${s.img}" alt="${s.name}" loading="lazy"
-          onerror="this.style.background='#e4f2e4';this.style.display='block'" />
+        <div class="cart-item-thumb card-art card-art-${s.id}">
+          <img class="card-real-img" src="${s.img}" alt="${s.name}" loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+          <div class="card-art-emojis" style="display:none;font-size:18px">${s.art}</div>
+        </div>
         <div class="cart-item-info">
           <div class="cart-item-name">${s.name}</div>
           <div class="cart-item-price">₹${CONFIG.PRICE} × ${qty} = ₹${CONFIG.PRICE * qty}</div>
@@ -225,9 +237,9 @@ function renderCutoffBanner() {
   const h = now.getHours();
 
   if (h < CONFIG.ORDER_CUTOFF_HOUR) {
-    banner.innerHTML = `<div class="cutoff-msg">✅ Order before 9am to get today's lunch delivered · 12pm – 2:30pm</div>`;
+    banner.innerHTML = `<div class="cutoff-msg">✅ Order before 9am · Lunch delivery 12pm–2:30pm · 📍 Kharadi · Magarpatta · Amanora</div>`;
   } else {
-    banner.innerHTML = `<div class="cutoff-msg warn">⏰ Today's order window has closed. Pre-order for tomorrow!</div>`;
+    banner.innerHTML = `<div class="cutoff-msg warn">⏰ Today's order window is closed — pre-order for tomorrow's lunch! 📍 Kharadi · Magarpatta · Amanora</div>`;
   }
 }
 
