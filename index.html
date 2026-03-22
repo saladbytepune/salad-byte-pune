@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#1a3a1a" />
+  <meta name="description" content="Salad Byte – Pure Veg Power Salads for Pune IT Pros. 225g Fresh Salads @ ₹175 Each." />
+  <title>Salad Byte 🥗 – Pure Veg Power Salads</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════ HEADER ══════════════════════════ -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🥗</span>
+        <span class="logo-text">Salad<em>Byte</em></span>
+      </div>
+      <div class="header-right">
+        <span class="location-pill">📍 Pune</span>
+        <button class="cart-btn" id="cartBtn" aria-label="Open cart">
+          <span class="cart-icon">🛒</span>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════ MAIN CONTENT ══════════════════════════ -->
+  <main class="main-content" id="mainContent">
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="heroSection">
+      <div class="hero-bg-art"></div>
+      <div class="hero-content">
+        <div class="hero-badge">🌿 100% Pure Veg · Pune's Freshest</div>
+        <h1 class="hero-title">
+          Power Salads<br/>
+          <span class="hero-title-accent">Built for IT Pros</span>
+        </h1>
+        <p class="hero-sub">225g Fresh Salads @ <strong>₹175 Each</strong><br/>Order in 30 seconds. Delivered to your desk.</p>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-num">6</span><span class="stat-label">Varieties</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">225g</span><span class="stat-label">Per Bowl</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">₹175</span><span class="stat-label">Flat Price</span></div>
+        </div>
+        <button class="hero-cta" id="heroCtaBtn">
+          Order Now 🚀
+        </button>
+      </div>
+      <div class="hero-scroll-hint">scroll to explore ↓</div>
+    </section>
+
+    <!-- MENU SECTION -->
+    <section class="menu-section" id="menuSection">
+      <div class="section-header">
+        <h2 class="section-title">Today's Menu</h2>
+        <span class="section-sub">Tap any card to add 🥗</span>
+      </div>
+      <div class="menu-grid" id="menuGrid">
+        <!-- Cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- WHY US SECTION -->
+    <section class="why-section">
+      <div class="why-grid">
+        <div class="why-card">
+          <span class="why-icon">🌿</span>
+          <span class="why-title">100% Pure Veg</span>
+          <span class="why-desc">No meat, no compromise</span>
+        </div>
+        <div class="why-card">
+          <span class="why-icon">⚡</span>
+          <span class="why-title">Prep Fresh Daily</span>
+          <span class="why-desc">Cut & tossed every morning</span>
+        </div>
+        <div class="why-card">
+          <span class="why-icon">💪</span>
+          <span class="why-title">Protein-Rich</span>
+          <span class="why-desc">Fuel long coding sessions</span>
+        </div>
+        <div class="why-card">
+          <span class="why-icon">📦</span>
+          <span class="why-title">Pune Delivery</span>
+          <span class="why-desc">Hinjewadi, Baner & more</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════ CART DRAWER ══════════════════════════ -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="drawer-handle"></div>
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="close-btn" id="closeCartBtn" aria-label="Close cart">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty" id="cartEmpty">
+        <span class="empty-icon">🥗</span>
+        <p>Your bowl is empty!</p>
+        <p class="empty-sub">Add some power salads 💪</p>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total-row">
+        <span>Total</span>
+        <span class="cart-total-amt" id="cartTotalAmt">₹0</span>
+      </div>
+      <p class="cart-note">💳 Cash on Delivery • 🌿 Pure Veg Guaranteed</p>
+      <button class="checkout-btn" id="checkoutBtn">Proceed to Order →</button>
+    </div>
+  </aside>
+
+  <!-- ══════════════════════════ CHECKOUT MODAL ══════════════════════════ -->
+  <div class="modal-overlay" id="checkoutOverlay">
+    <div class="modal checkout-modal" id="checkoutModal">
+      <div class="modal-header">
+        <button class="back-btn" id="closeCheckoutBtn">← Back</button>
+        <h2>Place Order</h2>
+        <span></span>
+      </div>
+      <div class="modal-body">
+        <div class="order-summary-mini" id="orderSummaryMini"></div>
+
+        <form id="orderForm" novalidate>
+          <div class="form-group">
+            <label for="custName">Your Name *</label>
+            <input type="text" id="custName" placeholder="Rahul Sharma" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="custPhone">WhatsApp Number *</label>
+            <input type="tel" id="custPhone" placeholder="+91 98765 43210" required autocomplete="tel" maxlength="13" />
+          </div>
+          <div class="form-group">
+            <label for="custAddress">Delivery Address *</label>
+            <textarea id="custAddress" placeholder="Flat/Office, Building, Area – e.g. WeWork Hinjewadi Phase 1" required rows="2" autocomplete="street-address"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="deliveryTime">Delivery Slot *</label>
+            <select id="deliveryTime" required></select>
+          </div>
+          <div class="order-total-block">
+            <div class="order-total-label">Order Total</div>
+            <div class="order-total-value" id="checkoutTotal">₹0</div>
+          </div>
+          <div class="form-note">* Cash on Delivery. We'll WhatsApp your confirmation in 2 mins.</div>
+          <button type="submit" class="place-order-btn" id="placeOrderBtn">
+            Place Order & Pay Cash 🍃
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════ SUCCESS SCREEN ══════════════════════════ -->
+  <div class="modal-overlay" id="successOverlay" style="display:none">
+    <div class="success-screen" id="successScreen">
+      <div class="success-anim">
+        <div class="success-circle">
+          <span class="success-check">✓</span>
+        </div>
+        <div class="success-rings"></div>
+      </div>
+      <h2 class="success-title">Order Placed! 🎉</h2>
+      <p class="success-msg">We'll WhatsApp you in <strong>2 minutes</strong> with your order confirmation.</p>
+      <div class="success-details" id="successDetails"></div>
+      <button class="success-wa-btn" id="successWaBtn">
+        Open WhatsApp Confirmation 📲
+      </button>
+      <button class="success-back-btn" id="successBackBtn">Back to Menu</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════ BOTTOM NAV ══════════════════════════ -->
+  <nav class="bottom-nav" id="bottomNav">
+    <button class="nav-item active" data-section="hero" onclick="scrollToSection('heroSection')">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Home</span>
+    </button>
+    <button class="nav-item" data-section="menu" onclick="scrollToSection('menuSection')">
+      <span class="nav-icon">🥗</span>
+      <span class="nav-label">Menu</span>
+    </button>
+    <button class="nav-item" id="navCartBtn" onclick="openCart()">
+      <span class="nav-icon">🛒</span>
+      <span class="nav-label">Cart</span>
+      <span class="nav-badge" id="navBadge">0</span>
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+  <footer class="app-footer">
+    <p>🌿 Pure Veg &nbsp;|&nbsp; 🥗 Fresh Daily &nbsp;|&nbsp; 📍 Pune Delivery</p>
+    <p>Contact: <a href="tel:+918233787904">+91-82337-87904</a></p>
+    <p class="footer-copy">© 2024 Salad Byte. All rights reserved.</p>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
