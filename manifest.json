@@ -1,28 +1,16 @@
 {
-  "name": "Salad Byte – Pure Veg Power Salads",
+  "name": "Salad Byte – Healthy Bowls for Busy Days",
   "short_name": "Salad Byte",
-  "description": "Pure Veg Power Salads for Pune IT Pros. 225g Fresh Salads @ ₹175 each.",
+  "description": "Pure Veg Power Salads for Pune IT Pros. Kharadi, Magarpatta & Amanora delivery.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1a3a1a",
-  "theme_color": "#1a3a1a",
+  "background_color": "#111a11",
+  "theme_color": "#111a11",
   "orientation": "portrait",
   "icons": [
-    {
-      "src": "icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ],
   "categories": ["food", "shopping"],
-  "lang": "en-IN",
-  "dir": "ltr",
-  "scope": "/"
+  "lang": "en-IN"
 }
