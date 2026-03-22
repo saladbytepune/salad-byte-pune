@@ -15,7 +15,7 @@ const CONFIG = {
 const SALADS = [
   {
     id: 1,
-    name: 'Mix Sprout Paneer Salad',
+    name: 'Mix Sprout Power Salad',
     subtitle: 'Fresh Mint Fusion',
     emoji: '💪',
     art: '🌱🥗🌿',
@@ -24,7 +24,7 @@ const SALADS = [
   },
   {
     id: 2,
-    name: 'Rajma Tofu Protein Bowl',
+    name: 'Rajma & Tofu Protein Salad',
     subtitle: 'Asian Crunch',
     emoji: '🔥',
     art: '🫘🥢🔥',
@@ -33,7 +33,7 @@ const SALADS = [
   },
   {
     id: 3,
-    name: 'Chatpata Chana Peanut Salad',
+    name: 'Chatpata Chana Salad',
     subtitle: 'Desi Crunch',
     emoji: '🌶️',
     art: '🌶️🥜🍋',
@@ -42,7 +42,7 @@ const SALADS = [
   },
   {
     id: 4,
-    name: 'Soya Paneer Power Bowl',
+    name: 'Soya Chunks & Paneer Salad',
     subtitle: 'Green Crunch',
     emoji: '⭐',
     art: '🥦🧀⭐',
@@ -51,7 +51,7 @@ const SALADS = [
   },
   {
     id: 5,
-    name: 'Exotic Veg Tofu Salad',
+    name: 'Exotic Mix Veg Salad',
     subtitle: 'Premium Bowl',
     emoji: '🥦',
     art: '🥦🫑🥕',
@@ -60,7 +60,7 @@ const SALADS = [
   },
   {
     id: 6,
-    name: 'Quinoa Chickpea Protein Bowl',
+    name: 'Quinoa Veggie Salad',
     subtitle: 'Fresh Balance',
     emoji: '🌾',
     art: '🌾🫛🍅',
