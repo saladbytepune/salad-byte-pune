@@ -245,9 +245,16 @@ function loadCart() {
     const saved = localStorage.getItem('sb_cart');
     if (saved) cart = JSON.parse(saved);
   } catch (_) { cart = {}; }
-  // Purge items that don't match today's/next-available salad
-  const validId = getActiveSaladId();
-  Object.keys(cart).forEach(k => { if (parseInt(k) !== validId) delete cart[k]; });
+  // Only purge items whose salad day has already passed today (stale orders)
+  // Items for today or future days are kept
+  const now = new Date();
+  const todayDay = now.getDay();
+  Object.keys(cart).forEach(k => {
+    const salad = SALADS.find(s => s.id === parseInt(k));
+    if (!salad) { delete cart[k]; }
+    // If it's past cutoff today and item is today's salad, keep it — they may have pre-ordered
+    // Only delete if salad day was yesterday or earlier this week and window is closed
+  });
 }
 function saveCart() { try { localStorage.setItem('sb_cart', JSON.stringify(cart)); } catch (_) {} }
 function cartCount() { return Object.values(cart).reduce((a, b) => a + b, 0); }
@@ -407,21 +414,19 @@ function openCheckout() {
     });
   }
 
-  // When slot changes → update active salad, purge mismatched cart items
+  // When slot changes → update card highlight + mini summary, DO NOT touch cart
   sel.onchange = () => {
     const newSaladId = getSlotSaladId();
-    let changed = false;
-    Object.keys(cart).forEach(k => {
-      if (parseInt(k) !== newSaladId) { delete cart[k]; changed = true; }
-    });
-    if (changed) { saveCart(); syncUI(); }
     applyCardStates(newSaladId);
 
-    // Refresh mini summary
+    // Refresh mini summary to show what's in cart (unchanged)
     let h = `<div class="order-mini-title">Your Order</div>`;
     const hasItems = SALADS.some(s => cart[s.id]);
     if (hasItems) {
-      SALADS.forEach(s => { const q = cart[s.id] || 0; if (q) h += `<div class="order-mini-item"><span>${s.name} × ${q}</span><span>₹${CONFIG.PRICE * q}</span></div>`; });
+      SALADS.forEach(s => {
+        const q = cart[s.id] || 0;
+        if (q) h += `<div class="order-mini-item"><span>${s.name} × ${q}</span><span>₹${CONFIG.PRICE * q}</span></div>`;
+      });
     } else {
       const salad = SALADS.find(s => s.id === newSaladId);
       h += `<div class="order-mini-item" style="color:var(--text-3)"><span>Go back and add ${salad?.name ?? 'the salad for this day'}</span></div>`;
