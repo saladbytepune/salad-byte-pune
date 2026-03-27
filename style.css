@@ -874,3 +874,153 @@ img { display: block; max-width: 100%; }
 @supports (padding: max(0px)) {
   .bottom-nav { padding-bottom: max(0px, env(safe-area-inset-bottom)); height: calc(var(--nav-h) + env(safe-area-inset-bottom)); }
 }
+
+/* ══════════════════════════════════════════
+   DAY SCHEDULING STYLES
+══════════════════════════════════════════ */
+
+/* ── Day badge on card image ── */
+.card-day-badge {
+  position: absolute;
+  bottom: 8px; left: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.badge-active {
+  background: var(--green);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(45,122,45,.4);
+}
+.badge-inactive {
+  background: rgba(0,0,0,.45);
+  color: rgba(255,255,255,.7);
+}
+
+/* ── Greyed-out card ── */
+.card-greyed {
+  opacity: .48;
+  filter: grayscale(40%);
+  pointer-events: none; /* block all taps */
+}
+.card-greyed .card-ctrl { pointer-events: none; }
+
+/* ── Unavailable message below card bottom ── */
+.card-unavail-msg {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-align: center;
+  margin-top: 6px;
+  padding: 4px 0 2px;
+  border-top: 1px solid var(--border);
+  letter-spacing: .2px;
+}
+
+/* ── Disabled Add button ── */
+.add-btn-disabled {
+  background: var(--border) !important;
+  color: var(--text-3) !important;
+  cursor: not-allowed !important;
+  font-size: 12px !important;
+}
+
+/* ── Banner multi-row layout ── */
+.banner-row {
+  display: block;
+  line-height: 1.6;
+}
+.banner-row.small {
+  font-size: 11px;
+  opacity: .8;
+  margin-top: 2px;
+}
+.cutoff-msg {
+  background: var(--green-tint);
+  border: 1px solid #c2ddc2;
+  border-radius: var(--radius-m);
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--green);
+}
+.cutoff-msg.warn {
+  background: #fff8e8;
+  border-color: #f0d080;
+  color: #7a5800;
+}
+
+/* ══════════════════════════════════════════
+   SUNDAY CLOSED SCREEN
+══════════════════════════════════════════ */
+.sunday-screen {
+  min-height: calc(100dvh - 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 28px;
+  text-align: center;
+  background: linear-gradient(160deg, #1a4a1a 0%, #2d7a2d 60%, #3a9a3a 100%);
+}
+.sunday-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  animation: sway 3s ease-in-out infinite;
+}
+@keyframes sway {
+  0%,100% { transform: rotate(-8deg); }
+  50%      { transform: rotate(8deg); }
+}
+.sunday-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.5px;
+  margin-bottom: 10px;
+}
+.sunday-sub {
+  font-size: 15px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+.sunday-next {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: var(--radius-l);
+  padding: 20px 28px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  backdrop-filter: blur(8px);
+  min-width: 260px;
+}
+.sunday-next-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,.5);
+}
+.sunday-next-day {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.3px;
+}
+.sunday-next-item {
+  font-size: 14px;
+  color: rgba(255,255,255,.8);
+  font-weight: 500;
+}
+.sunday-note {
+  font-size: 12px;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .3px;
+}
