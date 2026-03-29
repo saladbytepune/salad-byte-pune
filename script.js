@@ -110,15 +110,18 @@ function renderSundayScreen() {
           <span class="sunday-next-day">${next.label}</span>
           <span class="sunday-next-item">${next.salad ? next.salad.emoji + ' ' + next.salad.name : '🌱 Mix Sprout Power Salad'}</span>
         </div>
-        <p class="sunday-note">Orders open from 9am on ${next.dayName}</p>
+        <p class="sunday-note">But you can still pre-order below for the week ahead 👇</p>
       </div>`;
   }
-  ['menuSection','cutoffBanner'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  });
-  const trust = document.querySelector('.trust-section');
-  if (trust) trust.style.display = 'none';
+  // Show a warning banner instead of hiding the menu
+  const banner = document.getElementById('cutoffBanner');
+  if (banner) {
+    banner.innerHTML = `
+      <div class="cutoff-msg warn">
+        <span class="banner-row"><strong>😴 Closed today (Sunday)</strong> — Pre-order for the week ahead!</span>
+        <span class="banner-row small">📍 Kharadi · Magarpatta · Amanora · Delivery 12pm–2:30pm</span>
+      </div>`;
+  }
 }
 
 /* ══════════════════════════════════════════════
@@ -478,12 +481,17 @@ function validateForm() {
 ══════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
 
-  if (isSunday(new Date())) { renderSundayScreen(); return; }
-
   loadCart();
   renderMenu();
   syncUI();
-  renderBanner();
+
+  // Sunday: show closed notice in hero + banner, but keep full menu for pre-ordering
+  if (isSunday(new Date())) {
+    renderSundayScreen();
+  } else {
+    renderBanner();
+  }
+
   initSwipe();
   initScrollSpy();
 
